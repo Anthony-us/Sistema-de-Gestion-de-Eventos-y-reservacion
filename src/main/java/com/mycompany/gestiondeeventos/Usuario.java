@@ -1,28 +1,26 @@
 package com.mycompany.gestiondeeventos;
 
-public abstract class Usuario {
-    protected String idUsuario;
-    protected String nombre;
-    protected String correo;
-    protected String contraseña; 
+public class Usuario {
+    private int id;
+    private String nombre;
+    private String correo;
+    private String contraseña;
+    private Tipo tipo;
 
-    public Usuario(String idUsuario, String nombre, String correo, String contraseña) {
-        this.idUsuario = idUsuario;
+    public Usuario(int id, String nombre, String correo, String contraseña, Tipo tipo) {
+        this.id = id;
         this.nombre = nombre;
         this.correo = correo;
         this.contraseña = contraseña;
-    }
-    
-    public abstract void registrar();
-    public abstract boolean iniciarSesion(String correo, String contraseña);
-    
-    
-    public String getIdUsuario() {
-        return idUsuario;
+        this.tipo = tipo;
     }
 
-    public void setIdUsuario(String idUsuario) {
-        this.idUsuario = idUsuario;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -47,6 +45,14 @@ public abstract class Usuario {
 
     public void setContraseña(String contraseña) {
         this.contraseña = contraseña;
+    }
+
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
     }
     
     
