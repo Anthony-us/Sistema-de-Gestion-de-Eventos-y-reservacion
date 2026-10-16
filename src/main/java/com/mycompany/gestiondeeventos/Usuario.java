@@ -6,13 +6,15 @@ public class Usuario {
     private String correo;
     private String contraseña;
     private Tipo tipo;
+    private boolean registrado;
 
-    public Usuario(int id, String nombre, String correo, String contraseña, Tipo tipo) {
+    public Usuario(int id, String nombre, String correo, String contraseña, Tipo tipo, boolean registrado) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
         this.contraseña = contraseña;
         this.tipo = tipo;
+        this.registrado = registrado;
     }
 
     public int getId() {
@@ -53,6 +55,14 @@ public class Usuario {
 
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
+    }
+
+    public boolean isRegistrado() {
+        return registrado;
+    }
+
+    public void setRegistrado(boolean registrado) {
+        this.registrado = registrado;
     }
     
     
