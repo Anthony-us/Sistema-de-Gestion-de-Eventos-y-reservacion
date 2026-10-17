@@ -1,20 +1,34 @@
 package com.mycompany.gestiondeeventos;
 
 public class Usuario {
+
     private int id;
     private String nombre;
+    private String apellidos;
+    private String telefono;
     private String correo;
+    private String usuario;
     private String contraseña;
     private Tipo tipo;
     private boolean registrado;
 
-    public Usuario(int id, String nombre, String correo, String contraseña, Tipo tipo, boolean registrado) {
+    public Usuario(int id, String nombre, String apellidos, String telefono,
+            String correo, String usuario, String contraseña, Tipo tipo,
+            boolean registrado) {
         this.id = id;
         this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.telefono = telefono;
         this.correo = correo;
+        this.usuario = usuario;
         this.contraseña = contraseña;
         this.tipo = tipo;
         this.registrado = registrado;
+    }
+
+    public void registrar() {
+        System.out.println("Usuario registrado correctamente: "
+                + this.nombre + " " + this.apellidos);
     }
 
     public int getId() {
@@ -33,12 +47,36 @@ public class Usuario {
         this.nombre = nombre;
     }
 
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     public String getCorreo() {
         return correo;
     }
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getContraseña() {
@@ -64,7 +102,4 @@ public class Usuario {
     public void setRegistrado(boolean registrado) {
         this.registrado = registrado;
     }
-    
-    
-    
 }
