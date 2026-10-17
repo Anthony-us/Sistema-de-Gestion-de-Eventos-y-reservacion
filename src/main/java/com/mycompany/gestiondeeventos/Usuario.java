@@ -5,18 +5,28 @@ public class Usuario {
     private String nombre;
     private String correo;
     private String contraseña;
-    private Tipo tipo;
+    private Tipo rol;
     private boolean registrado;
 
-    public Usuario(int id, String nombre, String correo, String contraseña, Tipo tipo, boolean registrado) {
+    public Usuario(int id, String nombre, String correo, String contraseña, Tipo rol, boolean registrado) {
         this.id = id;
         this.nombre = nombre;
         this.correo = correo;
         this.contraseña = contraseña;
-        this.tipo = tipo;
+        this.rol = rol;
         this.registrado = registrado;
     }
 
+    public boolean validadDatos(String correo, String contraseña){
+        return this.correo.equals(correo) && this.contraseña.equals(contraseña);
+    }
+
+    @Override
+    public String toString() {
+        return nombre + "(" + rol + ")";
+    }
+    
+    
     public int getId() {
         return id;
     }
@@ -49,12 +59,12 @@ public class Usuario {
         this.contraseña = contraseña;
     }
 
-    public Tipo getTipo() {
-        return tipo;
+    public Tipo getRol() {
+        return rol;
     }
 
-    public void setTipo(Tipo tipo) {
-        this.tipo = tipo;
+    public void setRol(Tipo rol) {
+        this.rol = rol;
     }
 
     public boolean isRegistrado() {
