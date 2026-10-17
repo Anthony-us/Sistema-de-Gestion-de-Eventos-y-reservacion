@@ -12,7 +12,7 @@ public class Usuario {
     private Tipo rol;
     private boolean registrado;
 
-    public Usuario(int id, String nombre, String correo, String contraseña, Tipo rol, boolean registrado) {
+    public Usuario(int id, String nombre, String apellidos, String telefono, String usuario, String correo, String contraseña, Tipo rol, boolean registrado) {
         this.id = id;
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -25,7 +25,7 @@ public class Usuario {
     }
 
     public boolean validadDatos(String correo, String contraseña){
-        return this.correo.equals(correo) && this.contraseña.equals(contraseña);
+        return this.usuario.equals(usuario) && this.contraseña.equals(contraseña);
     }
 
     @Override

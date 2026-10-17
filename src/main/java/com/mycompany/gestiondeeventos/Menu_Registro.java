@@ -125,6 +125,7 @@ public class Menu_Registro extends javax.swing.JFrame {
 
         cbRoles.setFont(new java.awt.Font("Verdana", 3, 10)); // NOI18N
         cbRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Organizador", "Cliente" }));
+        cbRoles.addActionListener(this::cbRolesActionPerformed);
 
         javax.swing.GroupLayout jPanelCredencialesLayout = new javax.swing.GroupLayout(jPanelCredenciales);
         jPanelCredenciales.setLayout(jPanelCredencialesLayout);
@@ -233,42 +234,44 @@ public class Menu_Registro extends javax.swing.JFrame {
         String rolSeleccionado = cbRoles.getSelectedItem().toString();
 
         //Validaciones de campos
-        if (nombre.isEmpty() || apellidos.isEmpty() || usuario.isEmpty()
-                || contraseña.isEmpty()) {
+        if (nombre.isEmpty() || apellidos.isEmpty() || telefono.isEmpty() || 
+                correo.isEmpty() || usuario.isEmpty() || contraseña.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete "
                     + "los campos vacios.", "Campos Incompletos",
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
-
+        
+        if(!correo.contains("@")){
+            JOptionPane.showMessageDialog(this, "El correo no es válido", "Correo inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
         //Validar que las contraseñas coincidan
         if (!contraseña.equals(confirmarContraseña)) {
             JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden."
                     + " Verifiquelas.", "Error de contraseña",
                     JOptionPane.ERROR_MESSAGE);
+            return;
         }
-
-        // 1. Generamos un ID automático
-        int idGenerado = (int) (System.currentTimeMillis() % 100000);
-
-        // 2. Convertimos el rol seleccionado al formato Tipo
-        Tipo rolTipo = Tipo.valueOf(rolSeleccionado.trim().toUpperCase());
-
-        // 3. Creamos el objeto Usuario con sus 9 datos ordenados
-        Usuario nuevo = new Usuario(
-                idGenerado,
-                nombre,
-                apellidos,
-                telefono,
-                correo,
-                usuario,
-                contraseña,
-                rolTipo,
-                true
-        );
-
-        // 4. Ejecutamos el registro
-        nuevo.registrar();
+        
+        if (BaseDatos.existeCorreo(correo)) {
+            JOptionPane.showMessageDialog(this, "Ya existe un usuario con ese correo",
+                    "Correo repetido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        if (BaseDatos.existeUsuario(usuario)){
+            JOptionPane.showMessageDialog(this, "Ese mp,bre de usuario ya está en uso.",
+                    "Usuario repetido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Tipo rolTipo = Tipo.valueOf(rolSeleccionado);
+        
+        Usuario nuevoUs = new Usuario(BaseDatos.siguienteIdUsuario(), nombre, apellidos, telefono, correo, usuario, contraseña, rolTipo, true);
+        
+        BaseDatos.agregarUsuario(nuevoUs);
 
         //Mensaje de exito
         JOptionPane.showMessageDialog(this, "¡Registro exitoso! Ya"
@@ -283,25 +286,10 @@ public class Menu_Registro extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnGuardaryVolverActionPerformed
 
-    public static void main(String args[]) {
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void cbRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRolesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbRolesActionPerformed
 
-        java.awt.EventQueue.invokeLater(() -> new Menu_Registro().setVisible(true));
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardaryVolver;
