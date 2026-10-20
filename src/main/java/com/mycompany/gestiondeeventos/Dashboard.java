@@ -56,15 +56,6 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        // Solo para probar el Dashboard sin pasar por el Login.
-        // Cambie Tipo.Administrador por Tipo.Organizador o Tipo.Cliente para ver cada rol.
-        Usuario prueba = new Usuario(1, "Josue", "Castro", "88888888", "josue",
-                "josue@correo.com", "1234", Tipo.Administrador, true);
-
-        java.awt.EventQueue.invokeLater(() -> new Dashboard(prueba).setVisible(true));
-    }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

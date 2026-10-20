@@ -172,19 +172,15 @@ public class Menu_Principal extends javax.swing.JFrame {
         Usuario u = BaseDatos.validarLogin(usuario, contraseña);
         
         if(u != null){
-            JOptionPane.showMessageDialog(this, "!Bienvenido, " + u.getNombre()
-            + "! Rol: " + u.getRol());
-            
+            new Dashboard(u).setVisible(true);
+            this.dispose();
             // Se abre la interfaz principal segun el rol del usuario
         }
         else{
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", 
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        JOptionPane.showMessageDialog(this, "¡Ingreso exitoso!");
-        
-        
+   
         
     }//GEN-LAST:event_btInicioSesiónActionPerformed
 
