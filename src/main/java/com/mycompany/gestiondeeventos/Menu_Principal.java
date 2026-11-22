@@ -1,7 +1,7 @@
 package com.mycompany.gestiondeeventos;
 
-
-
+import Modelos.Tipo;
+import Modelos.Usuario;
 import javax.swing.JOptionPane;
 public class Menu_Principal extends javax.swing.JFrame {
     
@@ -41,7 +41,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         lblNombreU.setBackground(new java.awt.Color(255, 255, 255));
         lblNombreU.setFont(new java.awt.Font("Verdana", 2, 10)); // NOI18N
         lblNombreU.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblNombreU.setText("Nombre de Ususario:");
+        lblNombreU.setText("Nombre de Usuario:");
         lblNombreU.setToolTipText("");
 
         lblContraseña.setBackground(new java.awt.Color(255, 255, 255));
@@ -158,28 +158,36 @@ public class Menu_Principal extends javax.swing.JFrame {
     private void btInicioSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInicioSesiónActionPerformed
         //Obtener la informacion de usuario y contraseña
         String usuario = txtUsuario.getText().trim();
-        String contraseña = new String(txtContraseña.getPassword());
+        String contrasena = new String(txtContraseña.getPassword());
         
         //Validar si los campos estan vacios
-        if (usuario.isEmpty() || contraseña.isEmpty()) {
+        if (usuario.isEmpty() || contrasena.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos "
                     + "los campos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;  
         }
         
-        //Espacio para la conexion con base de datos
+        Usuario u = Usuario.iniciarSesion(usuario, contrasena);
         
-        Usuario u = BaseDatos.validarLogin(usuario, contraseña);
-        
-        if(u != null){
-            new Dashboard(u).setVisible(true);
-            this.dispose();
-            // Se abre la interfaz principal segun el rol del usuario
-        }
-        else{
+        if(u == null){
             JOptionPane.showMessageDialog(this, "Usuario o contraseña incorrectos.", 
                     "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+       
+        switch(u.getRol()){
+            case Cliente:
+                new ModuloReservaciones(null,u).setVisible(true);
+                break;
+            case Organizador:
+                new ModuloEventos(null, u).setVisible(true);
+                break;
+            case Administrador:
+                new Dashboard(u).setVisible(true);
+                break;
+            }
+        this.dispose();
+        
    
         
     }//GEN-LAST:event_btInicioSesiónActionPerformed

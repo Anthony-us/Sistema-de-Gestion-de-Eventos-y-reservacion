@@ -1,5 +1,8 @@
 package com.mycompany.gestiondeeventos;
 
+import Modelos.EstadoPago;
+import Modelos.EstadoReservacion;
+import Modelos.Usuario;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
@@ -269,7 +272,12 @@ public class ModuloReservaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        volverDashboard();
+        if(dashboard != null){
+            dashboard.setVisible(true);
+        }else{
+            new Menu_Principal().setVisible(true);
+        }
+        dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

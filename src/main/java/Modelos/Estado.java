@@ -1,4 +1,4 @@
-package com.mycompany.gestiondeeventos;
+package Modelos;
 
 public enum Estado {
     Programado,

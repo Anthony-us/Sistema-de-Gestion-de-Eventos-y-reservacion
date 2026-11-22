@@ -1,5 +1,6 @@
 package com.mycompany.gestiondeeventos;
 
+import Modelos.Usuario;
 import javax.swing.JOptionPane;
 
 /**

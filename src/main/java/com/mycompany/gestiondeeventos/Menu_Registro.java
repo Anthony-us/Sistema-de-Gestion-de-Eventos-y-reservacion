@@ -1,6 +1,7 @@
 package com.mycompany.gestiondeeventos;
 
-import com.mycompany.gestiondeeventos.Menu_Principal;
+import Modelos.Tipo;
+import Modelos.Usuario;
 import javax.swing.JOptionPane;
 
 public class Menu_Registro extends javax.swing.JFrame {
@@ -124,7 +125,7 @@ public class Menu_Registro extends javax.swing.JFrame {
         jTextField11.addActionListener(this::jTextField11ActionPerformed);
 
         cbRoles.setFont(new java.awt.Font("Verdana", 3, 10)); // NOI18N
-        cbRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Organizador", "Cliente" }));
+        cbRoles.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Organizador", "Cliente" }));
         cbRoles.addActionListener(this::cbRolesActionPerformed);
 
         javax.swing.GroupLayout jPanelCredencialesLayout = new javax.swing.GroupLayout(jPanelCredenciales);
@@ -226,7 +227,7 @@ public class Menu_Registro extends javax.swing.JFrame {
         // Extraccion de los datos del usuario nuevo
         String nombre = txtNombre.getText().trim();
         String apellidos = txtApellidos.getText().trim();
-        String telefono = txtTelefono.getText().trim();
+        String telefonoTxt = txtTelefono.getText().trim();
         String correo = txtCorreo.getText().trim();
         String usuario = txtUsuario.getText().trim();
         String contraseña = new String(txtContraseña.getPassword());
@@ -234,19 +235,28 @@ public class Menu_Registro extends javax.swing.JFrame {
         String rolSeleccionado = cbRoles.getSelectedItem().toString();
 
         //Validaciones de campos
-        if (nombre.isEmpty() || apellidos.isEmpty() || telefono.isEmpty() || 
-                correo.isEmpty() || usuario.isEmpty() || contraseña.isEmpty()) {
+        if (nombre.isEmpty() || apellidos.isEmpty() || telefonoTxt.isEmpty()
+                || correo.isEmpty() || usuario.isEmpty() || contraseña.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete "
                     + "los campos vacios.", "Campos Incompletos",
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
         
-        if(!correo.contains("@")){
-            JOptionPane.showMessageDialog(this, "El correo no es válido", "Correo inválido", JOptionPane.ERROR_MESSAGE);
+        int telefono; 
+        try{
+            telefono = Integer.parseInt(telefonoTxt);
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(this, "El telefono tiene que ser numero",
+                    "Telefono invalido", JOptionPane.ERROR_MESSAGE);
             return;
         }
         
+        if (!correo.contains("@")) {
+            JOptionPane.showMessageDialog(this, "El correo no es válido", "Correo inválido", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
         //Validar que las contraseñas coincidan
         if (!contraseña.equals(confirmarContraseña)) {
             JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden."
@@ -254,25 +264,29 @@ public class Menu_Registro extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        if (BaseDatos.existeCorreo(correo)) {
+
+        if (Usuario.existeCorreo(correo)) {
             JOptionPane.showMessageDialog(this, "Ya existe un usuario con ese correo",
                     "Correo repetido", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        if (BaseDatos.existeUsuario(usuario)){
+
+        if (Usuario.existeUsuario(usuario)) {
             JOptionPane.showMessageDialog(this, "Ese mp,bre de usuario ya está en uso.",
                     "Usuario repetido", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
-        Tipo rolTipo = Tipo.valueOf(rolSeleccionado);
-        
-        Usuario nuevoUs = new Usuario(BaseDatos.siguienteIdUsuario(), nombre, apellidos, telefono, correo, usuario, contraseña, rolTipo, true);
-        
-        BaseDatos.agregarUsuario(nuevoUs);
 
+        Tipo rolTipo = Tipo.valueOf(rolSeleccionado);
+
+        Usuario nuevoUs = new Usuario(nombre, apellidos, telefono, correo, usuario, contraseña, rolTipo);
+
+        String resultado = nuevoUs.agregar();
+
+        if (!resultado.equals("Registro de usuario agregado con exito.")) {
+            JOptionPane.showMessageDialog(this, resultado, "Error al registrar", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         //Mensaje de exito
         JOptionPane.showMessageDialog(this, "¡Registro exitoso! Ya"
                 + " puede iniciar sesion", "Registro Completo",

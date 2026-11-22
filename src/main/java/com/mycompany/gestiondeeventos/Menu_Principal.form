@@ -135,7 +135,7 @@
               <Font name="Verdana" size="10" style="2"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
-            <Property name="text" type="java.lang.String" value="Nombre de Ususario:"/>
+            <Property name="text" type="java.lang.String" value="Nombre de Usuario:"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>

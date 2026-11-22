@@ -1,4 +1,4 @@
-package com.mycompany.gestiondeeventos;
+package Modelos;
 
 public class Pago {
     private static int contador = 1;
