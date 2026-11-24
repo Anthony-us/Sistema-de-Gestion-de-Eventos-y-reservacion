@@ -84,6 +84,7 @@ public class ModuloReservaciones extends javax.swing.JFrame {
         lblTitulo.setFont(new java.awt.Font("Verdana", 1, 20)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(0, 102, 51));
         lblTitulo.setText("Módulo 3: Reservaciones y Pagos");
+
         lblSesion.setFont(new java.awt.Font("Verdana", 2, 10)); // NOI18N
         lblSesion.setForeground(new java.awt.Color(102, 102, 102));
         lblSesion.setText("Sesión");
@@ -100,42 +101,45 @@ public class ModuloReservaciones extends javax.swing.JFrame {
         ));
         spTabla.setViewportView(tbReservaciones);
 
-
         javax.swing.GroupLayout pnlListaLayout = new javax.swing.GroupLayout(pnlLista);
         pnlLista.setLayout(pnlListaLayout);
         pnlListaLayout.setHorizontalGroup(
             pnlListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlListaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(spTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
+                .addComponent(spTabla)
                 .addContainerGap())
         );
         pnlListaLayout.setVerticalGroup(
             pnlListaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlListaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(spTabla, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(spTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(219, Short.MAX_VALUE))
         );
 
-
         pnlAcciones.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 204, 0)), "Acciones", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 3, 14), new java.awt.Color(0, 102, 51))); // NOI18N
+
         btnNueva.setBackground(new java.awt.Color(51, 204, 0));
         btnNueva.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         btnNueva.setText("Nueva Reservación");
         btnNueva.addActionListener(this::btnNuevaActionPerformed);
+
         btnCancelar.setBackground(new java.awt.Color(51, 204, 0));
         btnCancelar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         btnCancelar.setText("Cancelar Reservación");
         btnCancelar.addActionListener(this::btnCancelarActionPerformed);
+
         btnPagar.setBackground(new java.awt.Color(51, 204, 0));
         btnPagar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         btnPagar.setText("Registrar Pago");
         btnPagar.addActionListener(this::btnPagarActionPerformed);
+
         btnActualizar.setBackground(new java.awt.Color(51, 204, 0));
         btnActualizar.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(this::btnActualizarActionPerformed);
+
         btnVolver.setBackground(new java.awt.Color(204, 51, 51));
         btnVolver.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         btnVolver.setForeground(new java.awt.Color(255, 255, 255));
@@ -172,7 +176,6 @@ public class ModuloReservaciones extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,9 +184,9 @@ public class ModuloReservaciones extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblTitulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(lblSesion))
                     .addComponent(pnlLista, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlAcciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
@@ -193,10 +196,10 @@ public class ModuloReservaciones extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlLista, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                    .addComponent(lblTitulo)
+                    .addComponent(lblSesion))
+                .addGap(18, 18, 18)
+                .addComponent(pnlLista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(pnlAcciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
