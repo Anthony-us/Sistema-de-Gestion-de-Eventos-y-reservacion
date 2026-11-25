@@ -29,7 +29,6 @@ public class Menu_Principal extends javax.swing.JFrame {
         txtContraseña = new javax.swing.JPasswordField();
         btInicioSesión = new javax.swing.JButton();
         cbRecordarmeU = new javax.swing.JCheckBox();
-        lblOlvidoContraseña = new javax.swing.JLabel();
         lblNotieneC = new javax.swing.JLabel();
         lblRegistrarse = new javax.swing.JLabel();
 
@@ -59,15 +58,6 @@ public class Menu_Principal extends javax.swing.JFrame {
         cbRecordarmeU.setText("Recordarme");
         cbRecordarmeU.addActionListener(this::cbRecordarmeUActionPerformed);
 
-        lblOlvidoContraseña.setFont(new java.awt.Font("Verdana", 2, 10)); // NOI18N
-        lblOlvidoContraseña.setForeground(new java.awt.Color(102, 102, 102));
-        lblOlvidoContraseña.setText("¿Olvidaste tu contraseña?");
-        lblOlvidoContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblOlvidoContraseñaMouseClicked(evt);
-            }
-        });
-
         lblNotieneC.setFont(new java.awt.Font("Verdana", 2, 12)); // NOI18N
         lblNotieneC.setText("¿No tienes una cuenta?");
 
@@ -92,13 +82,10 @@ public class Menu_Principal extends javax.swing.JFrame {
                     .addGroup(PInicioSesionLayout.createSequentialGroup()
                         .addGap(117, 117, 117)
                         .addGroup(PInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PInicioSesionLayout.createSequentialGroup()
-                                .addComponent(cbRecordarmeU)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblOlvidoContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbRecordarmeU)
                             .addGroup(PInicioSesionLayout.createSequentialGroup()
-                                .addGap(103, 103, 103)
-                                .addComponent(lblNotieneC, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(74, 74, 74)
+                                .addComponent(lblNotieneC, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblRegistrarse))
                             .addComponent(lblContraseña, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -119,9 +106,7 @@ public class Menu_Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(txtContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(PInicioSesionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbRecordarmeU)
-                    .addComponent(lblOlvidoContraseña))
+                .addComponent(cbRecordarmeU)
                 .addGap(18, 18, 18)
                 .addComponent(btInicioSesión)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -150,10 +135,6 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cbRecordarmeUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRecordarmeUActionPerformed
-        // Se configuro en el otro avance
-    }//GEN-LAST:event_cbRecordarmeUActionPerformed
 
     private void btInicioSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInicioSesiónActionPerformed
         //Obtener la informacion de usuario y contraseña
@@ -198,9 +179,9 @@ public class Menu_Principal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblRegistrarseMouseClicked
 
-    private void lblOlvidoContraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblOlvidoContraseñaMouseClicked
-        // Se modifica cuando este la base de datos
-    }//GEN-LAST:event_lblOlvidoContraseñaMouseClicked
+    private void cbRecordarmeUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRecordarmeUActionPerformed
+        // Se configuro en el otro avance
+    }//GEN-LAST:event_cbRecordarmeUActionPerformed
 
 
 
@@ -211,7 +192,6 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel lblContraseña;
     private javax.swing.JLabel lblNombreU;
     private javax.swing.JLabel lblNotieneC;
-    private javax.swing.JLabel lblOlvidoContraseña;
     private javax.swing.JLabel lblRegistrarse;
     private javax.swing.JPasswordField txtContraseña;
     private javax.swing.JTextField txtUsuario;

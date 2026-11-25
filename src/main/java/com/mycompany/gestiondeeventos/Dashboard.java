@@ -69,19 +69,22 @@ public class Dashboard extends javax.swing.JFrame {
         btnEventos = new javax.swing.JButton();
         btnReservaciones = new javax.swing.JButton();
         lblPermisos = new javax.swing.JLabel();
+        btnUsuarios = new javax.swing.JButton();
         btnCerrarSesion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard - Sistema de Gestión de Eventos");
 
-
         pnlEncabezado.setBackground(new java.awt.Color(0, 102, 51));
+
         lblTitulo.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("Sistema de Gestión de Eventos y Reservación");
+
         lblBienvenida.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         lblBienvenida.setForeground(new java.awt.Color(255, 255, 255));
         lblBienvenida.setText("Bienvenido(a)");
+
         lblRol.setFont(new java.awt.Font("Verdana", 2, 12)); // NOI18N
         lblRol.setForeground(new java.awt.Color(255, 255, 255));
         lblRol.setText("Rol:");
@@ -93,47 +96,55 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(pnlEncabezadoLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(pnlEncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTitulo)
+                    .addComponent(lblBienvenida)
+                    .addComponent(lblRol))
                 .addContainerGap())
         );
         pnlEncabezadoLayout.setVerticalGroup(
             pnlEncabezadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEncabezadoLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblBienvenida)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblRol)
                 .addGap(15, 15, 15))
         );
 
-
         pnlModulos.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(102, 204, 0)), "Módulos disponibles", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Verdana", 3, 14), new java.awt.Color(0, 102, 51))); // NOI18N
+
         btnEventos.setBackground(new java.awt.Color(51, 204, 0));
         btnEventos.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
-        btnEventos.setText("Módulo 2: Gestión de Eventos");
+        btnEventos.setText("Módulo 1: Gestión de Eventos");
         btnEventos.addActionListener(this::btnEventosActionPerformed);
+
         btnReservaciones.setBackground(new java.awt.Color(51, 204, 0));
         btnReservaciones.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
-        btnReservaciones.setText("Módulo 3: Reservaciones y Pagos");
+        btnReservaciones.setText("Módulo 2: Reservaciones y Pagos");
         btnReservaciones.addActionListener(this::btnReservacionesActionPerformed);
+
         lblPermisos.setFont(new java.awt.Font("Verdana", 2, 10)); // NOI18N
         lblPermisos.setForeground(new java.awt.Color(102, 102, 102));
-        lblPermisos.setText("Permisos");
+
+        btnUsuarios.setBackground(new java.awt.Color(51, 204, 0));
+        btnUsuarios.setFont(new java.awt.Font("Verdana", 1, 16)); // NOI18N
+        btnUsuarios.setText("Módulo 3: Gestión de Usuarios");
+        btnUsuarios.addActionListener(this::btnUsuariosActionPerformed);
 
         javax.swing.GroupLayout pnlModulosLayout = new javax.swing.GroupLayout(pnlModulos);
         pnlModulos.setLayout(pnlModulosLayout);
         pnlModulosLayout.setHorizontalGroup(
             pnlModulosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlModulosLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlModulosLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(pnlModulosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEventos, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                    .addComponent(btnReservaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                    .addComponent(lblPermisos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlModulosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnEventos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnUsuarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReservaciones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblPermisos)
                 .addGap(30, 30, 30))
         );
         pnlModulosLayout.setVerticalGroup(
@@ -144,8 +155,9 @@ public class Dashboard extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnReservaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblPermisos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGroup(pnlModulosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblPermisos)
+                    .addComponent(btnUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         btnCerrarSesion.setBackground(new java.awt.Color(204, 51, 51));
@@ -161,9 +173,11 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlEncabezado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlModulos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCerrarSesion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlEncabezado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -172,10 +186,10 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(pnlEncabezado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnlModulos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlModulos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -206,10 +220,15 @@ public class Dashboard extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+        ModuloGestionUsuario Usuario = new ModuloGestionUsuario();
+    }//GEN-LAST:event_btnUsuariosActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCerrarSesion;
     private javax.swing.JButton btnEventos;
     private javax.swing.JButton btnReservaciones;
+    private javax.swing.JButton btnUsuarios;
     private javax.swing.JLabel lblBienvenida;
     private javax.swing.JLabel lblPermisos;
     private javax.swing.JLabel lblRol;

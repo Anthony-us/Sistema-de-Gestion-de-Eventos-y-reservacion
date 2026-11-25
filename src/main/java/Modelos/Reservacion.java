@@ -1,8 +1,14 @@
 package Modelos;
 
-public class Reservacion {
-    private static int contador = 1;
-    
+import com.mycompany.gestiondeeventos.ConexionSQL;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+public class Reservacion {  
     private int id;
     private Eventos evento;
     private Usuario cliente;
@@ -11,6 +17,17 @@ public class Reservacion {
     private EstadoReservacion estado;
     private double total;
 
+    // Crea una nueva reservacion
+    public Reservacion(Eventos evento, Usuario cliente, int cantidadEntradas, String fechaReserva, EstadoReservacion estado, double total) {
+        setEvento(evento);
+        setCliente(cliente);
+        setCantidadEntradas(cantidadEntradas);
+        this.fechaReserva = fechaReserva;
+        this.estado = estado;
+        this.total = calcularTotal();
+    }   
+    
+    // 
     public Reservacion(int id, Eventos evento, Usuario cliente, int cantidadEntradas, String fechaReserva, EstadoReservacion estado, double total) {
         this.id = id;
         setEvento(evento);
@@ -22,8 +39,128 @@ public class Reservacion {
     }
 
     public double calcularTotal(){
+        if(evento == null){
+            return 0.0;
+        }
         return evento.getPrecio() * cantidadEntradas;
     }
+    
+    //Se usa para agregar una reservacion
+    public String agregar(){
+        ConexionSQL conexionSQL = new ConexionSQL();
+
+        String sql = "INSERT INTO reservaciones(id_evento, id_usuario, cantidad_entradas, fecha_reserva, total, estado)"
+                + "VALUES (?, ?, ?, ?, ?, ?);";
+
+        try {
+            PreparedStatement ps = conexionSQL.conectarSQL()
+                    .prepareStatement(sql);
+
+            ps.setInt(1, this.evento.getIdEvento());
+            ps.setInt(2, this.cliente.getId());
+            ps.setInt(3, this.cantidadEntradas);
+            ps.setString(4, this.fechaReserva);
+            ps.setDouble(5, this.total);
+            ps.setString(6, this.estado.toString());
+            
+                
+
+            ps.executeUpdate();
+            return "Reservacion agregada con exito.";
+        } catch (SQLException ex) {
+            System.out.println("Exception Agregar Reservacion: " + ex.getMessage());
+            return "No se pudo agregar la reservacion.";
+        } catch (Exception ex) {
+            return "No se pudo establacer conexion con la base de datos.";
+        } finally {
+            conexionSQL.desconectarSQL();
+        }
+    
+    }
+    
+    //Se usa para mostrar los datos en las tablas y cada uno solo consulta sus reservaciones
+    public static DefaultTableModel consultar(JFrame frame, int idUsuario){
+        ConexionSQL conexionSQL = new ConexionSQL();
+
+        DefaultTableModel modelo = new DefaultTableModel();
+
+        modelo.addColumn("ID");
+        modelo.addColumn("Evento");
+        modelo.addColumn("Cliente");
+        modelo.addColumn("Entradas");
+        modelo.addColumn("Fecha Reservada");
+        modelo.addColumn("Total");
+        modelo.addColumn("Estado");
+        String fila[] = new String[7];
+        
+        String sql = """
+                    SELECT r.id_reservacion,
+                           e.titulo AS evento_titulo,
+                           u.usuario AS cliente,
+                           r.cantidad_entradas,
+                           r.fecha_reserva,
+                           r.total,
+                           r.estado
+                    FROM reservaciones r
+                    INNER JOIN eventos e ON r.id_evento = e.id_evento
+                    INNER JOIN usuarios u ON r.id_usuario = u.id
+                    WHERE r.id_usuario = ?
+                    ORDER BY r.id_reservacion DESC;
+                    """;
+
+        try {
+            PreparedStatement ps = conexionSQL.conectarSQL().prepareStatement(sql);
+            ps.setInt(1, idUsuario);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                fila[0] = rs.getString("id_reservacion");
+                fila[1] = rs.getString("evento_titulo");
+                fila[2] = rs.getString("cliente");
+                fila[3] = rs.getString("cantidad_entradas");
+                fila[4] = rs.getString("fecha_reserva");
+                fila[5] = rs.getString("total");
+                fila[6] = rs.getString("estado");
+                modelo.addRow(fila);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(frame, "No se pudo cargar las reservaciones.");
+            System.out.println("Exception Consultar: " + ex.getMessage());
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(frame,
+                    "No se pudo establacer conexion con la base de datos.");
+        } finally {
+            conexionSQL.desconectarSQL();
+        }
+
+        return modelo;
+    }
+    
+    //Cancelar
+    
+    public String cancelar(){
+        ConexionSQL conexionSQL = new ConexionSQL();
+        
+        String sql = "UPDATE reservaciones set estado = ? WHERE id_reservacion = ?;";
+        try {
+            PreparedStatement ps = conexionSQL.conectarSQL()
+                    .prepareStatement(sql);
+
+            ps.setString(1, this.estado.Cancelada.toString());
+            ps.setInt(2, id);
+           
+            ps.executeUpdate();
+            return "Reservacion cancelada con exito.";
+        } catch (SQLException ex) {
+            System.out.println("Exception Cancelar: " + ex.getMessage());
+            return "No se pudo cancelar el evento.";
+        } catch (Exception ex) {
+            return "No se pudo establacer conexion con la base de datos.";
+        } finally {
+            conexionSQL.desconectarSQL();
+        }
+    }   
 
     public int getId() {
         return id;

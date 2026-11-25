@@ -72,7 +72,7 @@ public class Eventos {
     
     //Consultar
     public static DefaultTableModel consultar(JFrame frame){
-    ConexionSQL conexionSQL = new ConexionSQL();
+        ConexionSQL conexionSQL = new ConexionSQL();
 
         DefaultTableModel modelo = new DefaultTableModel();
 

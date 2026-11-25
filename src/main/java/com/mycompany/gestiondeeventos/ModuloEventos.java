@@ -439,8 +439,8 @@ public class ModuloEventos extends javax.swing.JFrame {
                 return;
             }
 
-            String titulo = txtTitulo.getText().trim();
-            String fecha = txtFecha.getText().trim();
+        String titulo = txtTitulo.getText().trim();
+        String fecha = txtFecha.getText().trim();
         String lugar = txtLugar.getText().trim();
         String direccion = txtDireccion.getText().trim();
         double precio = Double.parseDouble(txtPrecio.getText().trim());
