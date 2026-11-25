@@ -19,7 +19,7 @@ public class Usuario {
     private String contrasena;
     private Tipo rol;
 
-    //Registrar Usuario
+    //Cosntructor para Registrar Usuario
     public Usuario(String nombre, String apellidos, int telefono, String correo, String usuario, String contrasena, Tipo rol) {
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -84,7 +84,7 @@ public class Usuario {
             conexionSQL.desconectarSQL();
         }
     }
-    
+    //Valida si existe el correo en la base de datos de usuarios
     public static boolean existeCorreo(String correo){
         ConexionSQL conexionSQL = new ConexionSQL();
         String sql = "SELECT 1 FROM usuarios WHERE correo = ? LIMIT 1";
@@ -101,7 +101,7 @@ public class Usuario {
             conexionSQL.desconectarSQL();
         }
     }
-
+    //Validar si existe el usuario en la base de datos de usuarios
     public static boolean existeUsuario(String usuario){
         ConexionSQL conexionSQL = new ConexionSQL();
         String sql = "SELECT 1 FROM usuarios WHERE usuario = ? LIMIT 1";

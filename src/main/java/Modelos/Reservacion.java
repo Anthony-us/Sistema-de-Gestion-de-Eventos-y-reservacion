@@ -27,7 +27,7 @@ public class Reservacion {
         this.total = calcularTotal();
     }   
     
-    // 
+    // Constructor para consultar
     public Reservacion(int id, Eventos evento, Usuario cliente, int cantidadEntradas, String fechaReserva, EstadoReservacion estado, double total) {
         this.id = id;
         setEvento(evento);
@@ -92,7 +92,7 @@ public class Reservacion {
         modelo.addColumn("Total");
         modelo.addColumn("Estado");
         String fila[] = new String[7];
-        
+        //Comando para la base de dato en la que
         String sql = """
                     SELECT r.id_reservacion,
                            e.titulo AS evento_titulo,
@@ -137,16 +137,16 @@ public class Reservacion {
         return modelo;
     }
     
-    //Cancelar
+    //Cancelar reservacion
     
     public String cancelar(){
         ConexionSQL conexionSQL = new ConexionSQL();
-        
+        //Se actualiza reservacion solo cuando el id de la reservacion sea igual a algo
         String sql = "UPDATE reservaciones set estado = ? WHERE id_reservacion = ?;";
         try {
             PreparedStatement ps = conexionSQL.conectarSQL()
                     .prepareStatement(sql);
-
+            
             ps.setString(1, this.estado.Cancelada.toString());
             ps.setInt(2, id);
            
@@ -173,7 +173,7 @@ public class Reservacion {
     public Eventos getEvento() {
         return evento;
     }
-
+    //Validar que sea un evento y no null
     public void setEvento(Eventos evento) {
         if (evento == null){
             throw new IllegalArgumentException("La reservación debe expecificar "
@@ -185,7 +185,7 @@ public class Reservacion {
     public Usuario getCliente() {
         return cliente;
     }
-
+    //Validar que sea cliente y que no sea null
     public void setCliente(Usuario cliente) {
         if (cliente == null || cliente.getRol() != Tipo.Cliente){
             throw new IllegalArgumentException("Solo usuario con rol cliente puede realizar una reservacion");
@@ -196,7 +196,7 @@ public class Reservacion {
     public int getCantidadEntradas() {
         return cantidadEntradas;
     }
-
+    //Verificar que la cantidad de entradas sea mayor a 0
     public void setCantidadEntradas(int cantidadEntradas) {
         if (cantidadEntradas <= 0){
             throw new IllegalArgumentException("La cartidad de entradas debe ser mayor a 0");

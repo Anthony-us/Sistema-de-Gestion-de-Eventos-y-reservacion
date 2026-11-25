@@ -44,7 +44,7 @@ public class ModuloReservaciones extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }
-
+    
     public void volverDashboard() {
         if(dashboard != null){
             dashboard.setVisible(true);
@@ -240,6 +240,7 @@ public class ModuloReservaciones extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNuevaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaActionPerformed
+        //Verifica que haya seleccionado una fila de la tabla de Eventos
         int fila = tbEventos5.getSelectedRow();
         if(fila == -1){
             JOptionPane.showMessageDialog(this, "Seleccione un evento de la lista de eventos.",
@@ -248,7 +249,7 @@ public class ModuloReservaciones extends javax.swing.JFrame {
         }
         
         DefaultTableModel modeloEventosActual = (DefaultTableModel) tbEventos5.getModel();
-        
+        //Se atrae los valores guardos en las filas
         try{
             int idEvento = Integer.parseInt(modeloEventosActual.getValueAt(fila, 0).toString());
             String titulo = modeloEventosActual.getValueAt(fila, 1).toString();
@@ -256,13 +257,13 @@ public class ModuloReservaciones extends javax.swing.JFrame {
             double precio = Double.parseDouble(modeloEventosActual.getValueAt(fila, 5).toString());
             int cupoDisponible = Integer.parseInt(modeloEventosActual.getValueAt(fila, 6).toString());
             String estadoEvento = modeloEventosActual.getValueAt(fila, 7).toString();
-            
+            //Verificar que el estado de evento no sea ni cancelado, agotado y finalizado para realizar la reservacion
             if("Cancelado".equalsIgnoreCase(estadoEvento) || "Agotado".equalsIgnoreCase(estadoEvento) || "Finalizado".equalsIgnoreCase(estadoEvento)){
                 JOptionPane.showMessageDialog(this, "No se puede reservar un evento que esta agotado, cancelado o finalizado",
                         "Nueva reservacion", JOptionPane.WARNING_MESSAGE);
                 return;
             }
-            
+            //Verifica que si haya cupo disponible
             if(cupoDisponible <= 0){
                 JOptionPane.showMessageDialog(this, "No hay cupo disponible para este evento",
                     "Nueva reservacion", JOptionPane.WARNING_MESSAGE);

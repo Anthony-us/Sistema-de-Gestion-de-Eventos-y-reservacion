@@ -376,6 +376,7 @@ public class ModuloEventos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        //Se atrae los datos ingresados en los text field
         String titulo = txtTitulo.getText().trim();
         String fecha = txtFecha.getText().trim();
         String lugar = txtLugar.getText().trim();
@@ -384,7 +385,7 @@ public class ModuloEventos extends javax.swing.JFrame {
         int cupoDisponible = Integer.parseInt(txtCupo.getText().trim());
         Estado estado = Estado.valueOf(cboxEstado.getSelectedItem().toString());
         String organizador = txtOrganizador.getText().trim();
-        
+        //Validar que los campos no este en blanco
         if(titulo.length() < 1){
             JOptionPane.showMessageDialog(this, "Debe ingresar un titulo");
             return;
@@ -399,7 +400,7 @@ public class ModuloEventos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe ingresar un direccion");
             return;
         }
-        
+        //Validar que el precio sea mayor a 0 para que sea valido igual con los cupo
         if(precio < 0){
             JOptionPane.showMessageDialog(this, "El precio no puede ser negativo");
             return;
@@ -414,7 +415,7 @@ public class ModuloEventos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe ingresar un organizador.");
             return;
         }
-        
+        // Se crea el nuevo evento y se agrega a la tabla de datos de eventos
         Eventos nuevo = new Eventos(
                 titulo,
                 fecha,
@@ -434,11 +435,12 @@ public class ModuloEventos extends javax.swing.JFrame {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
+            //Verificar que haya selecionado un elemento de la tabla
             if (idEventoSeleccionado == -1) {
                 JOptionPane.showMessageDialog(this, "Por favor, seleccione un evento");
                 return;
             }
-
+        // Se atrae toda la info de la tabla
         String titulo = txtTitulo.getText().trim();
         String fecha = txtFecha.getText().trim();
         String lugar = txtLugar.getText().trim();
@@ -447,7 +449,7 @@ public class ModuloEventos extends javax.swing.JFrame {
         int cupoDisponible = Integer.parseInt(txtCupo.getText().trim());
         Estado estado = Estado.valueOf(cboxEstado.getSelectedItem().toString());
         String organizador = txtOrganizador.getText().trim();
-        
+        //Validar que no sea campos vacios
         if(titulo.length() < 1){
             JOptionPane.showMessageDialog(this, "Debe ingresar un titulo");
             return;
@@ -477,7 +479,7 @@ public class ModuloEventos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe ingresar un organizador.");
             return;
         }
-        
+        //Se modifica el Evento creando uno nuevo con los datos nuevos ingresado
         Eventos eventoModificado = new Eventos(
                 titulo,
                 fecha,
@@ -504,20 +506,20 @@ public class ModuloEventos extends javax.swing.JFrame {
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         
-        
+        //Verificar que haya seleccionado algo de la tabla
         try {
             if (idEventoSeleccionado == -1) {
                 JOptionPane.showMessageDialog(this, "Seleccione un evento de la tabla para eliminar");
                 return;
             }
-
+            //Pedir que confirme
             int confirmacion = JOptionPane.showConfirmDialog(this,
                     "¿Está seguro de eliminar este gasto?", "Confirmar",
                     JOptionPane.YES_NO_OPTION);
-
+            
             if (confirmacion == JOptionPane.YES_OPTION) {
                 Eventos eventosEliminar = new Eventos(idEventoSeleccionado);
-
+                
                 String resultado = eventosEliminar.eliminar();
                 JOptionPane.showMessageDialog(null, resultado);
                 limpiarCampos();

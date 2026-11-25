@@ -75,7 +75,7 @@ public class Eventos {
         ConexionSQL conexionSQL = new ConexionSQL();
 
         DefaultTableModel modelo = new DefaultTableModel();
-
+        
         modelo.addColumn("ID");
         modelo.addColumn("TITULO");
         modelo.addColumn("FECHA");
@@ -91,7 +91,7 @@ public class Eventos {
             PreparedStatement ps = conexionSQL.conectarSQL().prepareStatement(
                     "SELECT * FROM eventos;");
             ResultSet rs = ps.executeQuery();
-
+            
             while (rs.next()) {
                 fila[0] = rs.getString("id_evento");
                 fila[1] = rs.getString("titulo");

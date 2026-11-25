@@ -5,7 +5,7 @@ import javax.swing.JOptionPane;
 
 /**
  * Menú Principal (Dashboard) que se abre después de un inicio de sesión exitoso.
- * Muestra u oculta los botones de los módulos según el rol del usuario autenticado.
+ * Solo esta disponible para los que incia sesion como administrador
  */
 public class Dashboard extends javax.swing.JFrame {
 
@@ -28,14 +28,8 @@ public class Dashboard extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }
 
-    /**
-     * Lógica visual por rol: primero se ocultan todos los botones de módulos
-     * y luego se muestran solamente los que el rol puede usar.
-     *
-     * Administrador -> Módulo 2 (Eventos) y Módulo 3 (Reservaciones)
-     * Organizador   -> Módulo 2 (Eventos)
-     * Cliente       -> Módulo 3 (Reservaciones)
-     */
+
+    //
     private void configurarPorRol() {
         btnEventos.setVisible(false);
         btnReservaciones.setVisible(false);
@@ -44,15 +38,7 @@ public class Dashboard extends javax.swing.JFrame {
             case Administrador:
                 btnEventos.setVisible(true);
                 btnReservaciones.setVisible(true);
-                lblPermisos.setText("Acceso total: puede gestionar eventos y reservaciones.");
-                break;
-            case Organizador:
-                btnEventos.setVisible(true);
-                lblPermisos.setText("Puede crear y administrar sus eventos.");
-                break;
-            case Cliente:
-                btnReservaciones.setVisible(true);
-                lblPermisos.setText("Puede hacer reservaciones y registrar sus pagos.");
+                lblPermisos.setText("Acceso total: puedes solo inspecionar los eventos y reservaciones no puedes modificar ni registrar.");
                 break;
         }
     }
@@ -221,7 +207,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCerrarSesionActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
-        ModuloGestionUsuario Usuario = new ModuloGestionUsuario();
+        //Se esta validando si implementar
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

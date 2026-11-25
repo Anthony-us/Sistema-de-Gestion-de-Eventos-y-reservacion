@@ -242,7 +242,7 @@ public class Menu_Registro extends javax.swing.JFrame {
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+        //Valida si el telefono es numero 
         int telefono; 
         try{
             telefono = Integer.parseInt(telefonoTxt);
@@ -251,7 +251,7 @@ public class Menu_Registro extends javax.swing.JFrame {
                     "Telefono invalido", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+        //Valida que el correo contenga @
         if (!correo.contains("@")) {
             JOptionPane.showMessageDialog(this, "El correo no es válido", "Correo inválido", JOptionPane.ERROR_MESSAGE);
             return;
@@ -264,21 +264,21 @@ public class Menu_Registro extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        //Para evitar corro que se repite
         if (Usuario.existeCorreo(correo)) {
             JOptionPane.showMessageDialog(this, "Ya existe un usuario con ese correo",
                     "Correo repetido", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        //Validar que no haya usuario con el mismo usuario debido a que se inicia sesion con eso
         if (Usuario.existeUsuario(usuario)) {
             JOptionPane.showMessageDialog(this, "Ese mp,bre de usuario ya está en uso.",
                     "Usuario repetido", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
+        
         Tipo rolTipo = Tipo.valueOf(rolSeleccionado);
-
+        //Se crea el nuevo usuario y lo agrega a la base de datos para que pueda iniciar sesion
         Usuario nuevoUs = new Usuario(nombre, apellidos, telefono, correo, usuario, contraseña, rolTipo);
 
         String resultado = nuevoUs.agregar();

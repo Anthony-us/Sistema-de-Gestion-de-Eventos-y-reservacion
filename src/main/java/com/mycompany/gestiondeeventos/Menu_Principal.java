@@ -147,7 +147,8 @@ public class Menu_Principal extends javax.swing.JFrame {
                     + "los campos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;  
         }
-        
+        //Valida con el metodo inciarSesion para ver si los datos coincide en la 
+        //base de datos de los usuarios registrado
         Usuario u = Usuario.iniciarSesion(usuario, contrasena);
         
         if(u == null){
@@ -155,7 +156,7 @@ public class Menu_Principal extends javax.swing.JFrame {
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-       
+        //Valida los roles de los usuarios y se le abre sus respectivos modulos
         switch(u.getRol()){
             case Cliente:
                 new ModuloReservaciones(null,u).setVisible(true);
