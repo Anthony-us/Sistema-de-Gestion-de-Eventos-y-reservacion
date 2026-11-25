@@ -9,11 +9,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- * Prototipo del Módulo 3: Reservaciones y Pagos.
- * Solo es el diseño con una tabla y botones de prueba; la lógica real
- * (BaseDatos / SQL) se agrega después.
- */
+
 public class ModuloReservaciones extends javax.swing.JFrame {
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ModuloReservaciones.class.getName());
@@ -57,13 +53,13 @@ public class ModuloReservaciones extends javax.swing.JFrame {
         }
         dispose();
     }
-
+    // Carga los evento
     private void cargarEventos(){
         modeloEventos = Eventos.consultar(this);
         tbEventos5.setModel(modeloEventos);
         tbEventos5.setDefaultEditor(Object.class, null);
     }
-    
+    // Carga las Reservaciones
     private void cargarReservaciones(){
         modeloTabla = Reservacion.consultar(this, usuario.getId());
         tbReservaciones.setModel(modeloTabla);
